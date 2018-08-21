@@ -58,7 +58,7 @@ int main(){
 }
 ```
 ```java
- 	<bean id="user" class="com.sz.spring.model.User">
+<bean id="user" class="com.sz.spring.model.User">
  		<!--  
  			index:构造方法的参数的索引顺序
  			type:构造方法的参数的类型(不是必须的)
@@ -70,13 +70,13 @@ int main(){
 		<constructor-arg index="0" value="2"/>
 		<constructor-arg index="1" value="sunzhen"/>
 		<constructor-arg index="2" value="666"/>		 	
- 	</bean>
+</bean>
 ```
 
 ```java
- 	public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
-	private UserDao userdao;
+private UserDao userdao;
 
 	public UserServiceImpl() {
 
@@ -88,9 +88,9 @@ int main(){
 	}
 
 	@Override
-	public void save() {
+public void save() {
 
-		userdao.save();
+userdao.save();
 ```
 
 
