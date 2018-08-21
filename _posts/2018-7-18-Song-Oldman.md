@@ -388,6 +388,7 @@ Spring容器初始化的时候，@Resource注解首先按照@Resource属性的na
 ![002](/images/spring/002.png)
 @Resource注解并不是spring的注解，而是javax下的。
 
+
 ②加在set方法上
 
 在set方法上加@Resource注解
@@ -398,12 +399,15 @@ Spring容器初始化的时候，@Resource注解首先按照@Resource属性的na
 如果一旦指定了@Resource的name，如果name匹配不上就直接报错，不会再按照类型去匹配。
 ![004](/images/spring/004.png)
 
+
+
 2.@Autowired注解
 
 ①加在属性上
 
 @Autowired按照接口和实现类的关系来匹配的，如果存在多个接口的实现类的时候，我们必须要指定name来匹配，要结合@Qulifier的注解来指定value和 bean的id匹配来注入。
 ![005](/images/spring/005.png)
+
 ②加在set方法上
 ![006](/images/spring/006.png)
 
