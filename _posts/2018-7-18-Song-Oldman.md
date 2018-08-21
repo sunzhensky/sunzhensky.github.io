@@ -12,7 +12,51 @@ category: blog
 下面一一写写这些词牌，也想想过去的事儿。不少都忘了吧。
 
 小时候的那段时光不能算作十分快乐。不过，我身上的诸多东西却是那时形成的，或者说开了个头吧。宋词，便是我这一生的一个音调，今日情由偶奏起，且回眸。
+```
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 
+Find the largest palindrome made from the product of two 3-digit numbers.
+```
+这个题目思路很简单，考虑到求最大结果，所以从999×999开始递减就可以，我的想法是利用整除与取余将结果的前三项（倒置）与后三项比较，然后就可以得出结果。但是比较麻烦，最后采取的方法是直接将这个数整个翻转，然后对比原数，用一个双重循环找出最大值就可以了。使用C语言，下面给出代码：
+```c
+#include <stdio.h>
+
+int is_palindrome( int number ){
+        int res = 0;
+        int n = number;
+        if ( n < 0 ){
+            return 0;
+        }
+        do{
+            res = res * 10 + n % 10;
+            n = n / 10;
+        } while ( n );
+
+        if ( res == number ){
+            return 1;
+        }
+        return 0;
+}
+
+int solution(){
+    int x, y, v, largest_number;
+    largest_number=0;
+
+    for(x = 999; x > 100; x--){
+        for(y = 999; y > 100; y--){
+            v = x * y;
+            if(v > largest_number && is_palindrome(v) == 1){
+                largest_number = v;
+            }
+        }
+    }
+    return largest_number;
+}
+
+int main(){
+    return solution();
+}
+```
 ```java
  	<bean id="user" class="com.sz.spring.model.User">
  		<!--  
