@@ -8,6 +8,7 @@ layout: default
       <div class="info-card">
         <h1>孙震</h1>
         <a href="https://github.com/sunzhensky" target="_blank"><img src="https://github.com/favicon.ico" alt="" width="22"/></a>
+        <a href="tencent://message/?uin=962459678&Site=QQ交谈&Menu=yes" target="_blank"><img src="https://im.qq.com/favicon.ico" alt="" width="22"/></a>
       </div>
       <div id="particles-js"></div>
     </div>
