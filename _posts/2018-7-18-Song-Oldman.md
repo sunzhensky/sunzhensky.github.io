@@ -355,7 +355,7 @@ public class CollectionInjecti {
   	<bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl"></bean>
 </beans>
 ```
-
+</br></br></br>
 1.@Resource注解
 
 ①加在属性上
