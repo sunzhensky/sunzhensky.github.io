@@ -29,6 +29,26 @@ category: blog
  	</bean>
 ```
 
+```java
+ 	public class UserServiceImpl implements UserService {
+
+	private UserDao userdao;
+
+	public UserServiceImpl() {
+
+	}
+
+	public UserServiceImpl(UserDao userdao) {
+		super();
+		this.userdao = userdao;
+	}
+
+	@Override
+	public void save() {
+
+		userdao.save();
+```
+
 
 相见欢
 --
