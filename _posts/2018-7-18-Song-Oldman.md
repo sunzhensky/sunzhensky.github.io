@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: 白马青牛还杀了一只鸡
+title: spring知识点汇合
 description: 好歌献给您，愿您留心底。
 category: blog
 ---
@@ -13,7 +13,22 @@ category: blog
 
 小时候的那段时光不能算作十分快乐。不过，我身上的诸多东西却是那时形成的，或者说开了个头吧。宋词，便是我这一生的一个音调，今日情由偶奏起，且回眸。
 
-
+```java
+<!-- 构造器方式注入 -->
+ 	<bean id="user" class="com.sz.spring.model.User">
+ 		<!--  
+ 			index:构造方法的参数的索引顺序
+ 			type:构造方法的参数的类型(不是必须的)
+ 			value:值
+ 		-->
+ 		<!-- <constructor-arg index="0" type="java.lang.Integer" value="2"/>
+		<constructor-arg index="1" type="java.lang.String" value="sunzhen"/>
+		<constructor-arg index="2" type="java.lang.String" value="666"/> -->
+		<constructor-arg index="0" value="2"/>
+		<constructor-arg index="1" value="sunzhen"/>
+		<constructor-arg index="2" value="666"/>		 	
+ 	</bean>
+```
 
 
 相见欢
