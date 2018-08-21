@@ -1,7 +1,7 @@
 ---
 layout: post
 title: spring知识点汇合
-description: 一些收集的。
+description: 一些收集的知识点。
 category: blog
 ---
 
