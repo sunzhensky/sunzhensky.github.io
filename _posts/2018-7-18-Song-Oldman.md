@@ -25,12 +25,14 @@ AOP就是面向切面编程，AOP是OOP的延续，什么时候回用到呢，�
 1.使用构造器创建（工作中最常用的方式）
 
 使用构造器方式创建bean，要求bean必须要有默认的构造器
+
 配置:
 ```java
 <bean id="user" class="com.sz.spring.model.User"></bean>
 ```
 
 2.静态工厂方式创建
+
 提供静态工厂
 
 配置:
@@ -44,6 +46,7 @@ AOP就是面向切面编程，AOP是OOP的延续，什么时候回用到呢，�
 ```
 
 3.实例工厂方式创建
+
 实例工厂
 
 配置:
@@ -115,6 +118,7 @@ public void destroy() {
 ```
 
 2.构造器注入
+
 构造器注入常量:
 ```java
 <!-- 构造器方式注入 -->
@@ -134,6 +138,7 @@ public void destroy() {
 ```
 
 构造器注入bean:
+
 第一步：给当前的bean（Service实现类）提供要注入的bean有参数的构造器，切记不要忘了把默认构造器显示的提供出来
 ```java
 public class UserServiceImpl implements UserService {
@@ -174,6 +179,7 @@ public class UserServiceImpl implements UserService {
 ```
 
 3.外部bean注入(90%使用)
+
 第一步：创建UserService，中有一个UserDao的属性。必须提供set方法
 ```java
 public class UserServiceImpl implements UserService {
@@ -210,6 +216,7 @@ public class UserServiceImpl implements UserService {
 ```
 
 4.内部bean注入
+
 第一步：创建UserService，中有一个UserDao的属性。必须提供set方法
 ```java
 public class UserServiceImpl implements UserService {
@@ -230,6 +237,7 @@ public class UserServiceImpl implements UserService {
 }
 ```
 第二步：配置
+
 UserDaoImpl它定义在UserService的内部，不能被其他bean注入，比较少用
 ```java
 <bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl">
@@ -240,6 +248,7 @@ UserDaoImpl它定义在UserService的内部，不能被其他bean注入，比较
 ```
 
 5.集合注入
+
 都能注入：set，list，map，property，必须提供set方法
 ```java
 public class CollectionInjecti {
@@ -319,8 +328,7 @@ public class CollectionInjecti {
 7.注解方式注入
 -
 第一步：引入依赖包
-![王羲之](/images/spring/001.png)
-(/images/spring/001.png)
+![依赖包](/images/spring/001.png)
 
 第二步：引入约束文件
 ```java
@@ -355,7 +363,9 @@ public class CollectionInjecti {
 ```
 
 1.@Resource注解
+
 ①加在属性上
+
 在bean中定义要注入bean的属性，不需要提供set方法
 ```java
 public class UserServiceImpl implements UserService {
@@ -374,24 +384,26 @@ public class UserServiceImpl implements UserService {
 
 Spring容器初始化的时候，@Resource注解首先按照@Resource属性的name(默认没有指定name的时候用变量名(userdao))名称匹配跟spring容器中bean的id来匹配，默认不指定@Resource的name时，如果name匹配不上，就按照接口和实现类的关系来匹配，如果存在一个接口有多个实现类的关系的时候，我们必须指定@Resource的name属性来指定到底注入哪一个bean。
 
-
 如果指定了name，能找到就注入进来，如果找不到就会报错，不会按照类型进行匹配。
-
-
+![002](/images/spring/002.png)
 @Resource注解并不是spring的注解，而是javax下的。
 
 ②加在set方法上
-在set方法上加@Resource注解
-默认不指定@Resource的name的时候，bean的id和如果下图左边的三个框内的任意一个名称能匹配上就能注入。如果三个名字都匹配不上就都会按照接口和实现类的关系来匹配，如果遇到两个实现类就会报错，这时要求@Resource的name。
 
+在set方法上加@Resource注解
+
+默认不指定@Resource的name的时候，bean的id和如果下图左边的三个框内的任意一个名称能匹配上就能注入。如果三个名字都匹配不上就都会按照接口和实现类的关系来匹配，如果遇到两个实现类就会报错，这时要求@Resource的name。
+![003](/images/spring/003.png)
 
 如果一旦指定了@Resource的name，如果name匹配不上就直接报错，不会再按照类型去匹配。
-
+![004](/images/spring/004.png)
 
 2.@Autowired注解
+
 ①加在属性上
+
 @Autowired按照接口和实现类的关系来匹配的，如果存在多个接口的实现类的时候，我们必须要指定name来匹配，要结合@Qulifier的注解来指定value和 bean的id匹配来注入。
-
-
+![005](/images/spring/005.png)
 ②加在set方法上
+![006](/images/spring/006.png)
 
