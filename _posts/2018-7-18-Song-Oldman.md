@@ -23,8 +23,8 @@ AOP就是面向切面编程，AOP是OOP的延续，什么时候回用到呢，�
 2.Bean的创建方式
 -
 1.使用构造器创建（工作中最常用的方式）
-使用构造器方式创建bean，要求bean必须要有默认的构造器
 
+使用构造器方式创建bean，要求bean必须要有默认的构造器
 配置:
 ```java
 <bean id="user" class="com.sz.spring.model.User"></bean>
@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
 ```java
 <!--  
       定义UserDao的bean
- -->
+-->
 <bean id="userDao" class="com.sz.spring.dao.impl.UserDaoImpl"></bean>
 <!-- 定义UserService的bean -->
 <bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl">
