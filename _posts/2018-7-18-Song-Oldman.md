@@ -65,16 +65,16 @@ AOP的具体思想是：定义一个切面，在切面的纵向定义处理方�
 4.bean的作用域
 -
 默认情况下，bean都是单例的，是容器初始化的时候被创建的，就这么一份。<br>
-Scope：singleton单例,prototype多例,默认使用singleton<br>
-如果是singleton我们可以设置非延迟加载(容器初始化创建bean)和延迟加载(getBean的时候才创建)方式创建bean<br>
-如果是prototype我们没得选择只能是延迟加载方式创建)
+Scope：singleton单例,prototype多例,默认使用singleton。<br>
+如果是singleton我们可以设置非延迟加载(容器初始化创建bean)和延迟加载(getBean的时候才创建)方式创建bean。<br>
+如果是prototype我们没得选择只能是延迟加载方式创建。
 
 
 5.bean的生命周期
 -
-通过init方法和destroy方法来验证<br>
-init是bean被创建的时候被调用，主要做一些准备工作<br>
-destroy是bean被销毁的时候被调用，做清理工作<br>
+通过init方法和destroy方法来验证。<br>
+init是bean被创建的时候被调用，主要做一些准备工作。<br>
+destroy是bean被销毁的时候被调用，做清理工作。<br>
 Bean的生命周期和容器一致，容器被创建bean就被创建，容器销毁bean就被销毁。
 ```java
 public void init() {
@@ -173,7 +173,7 @@ public class UserServiceImpl implements UserService {
 
 3.外部bean注入(90%使用)
 
-第一步：创建UserService，中有一个UserDao的属性。必须提供set方法
+第一步：创建UserService中有一个UserDao的属性，必须提供set方法。
 ```java
 public class UserServiceImpl implements UserService {
 
@@ -210,7 +210,7 @@ public class UserServiceImpl implements UserService {
 
 4.内部bean注入
 
-第一步：创建UserService，中有一个UserDao的属性。必须提供set方法
+第一步：创建UserService中有一个UserDao的属性，必须提供set方法。
 ```java
 public class UserServiceImpl implements UserService {
 
@@ -242,7 +242,7 @@ UserDaoImpl它定义在UserService的内部，不能被其他bean注入，比较
 
 5.集合注入
 
-都能注入：set，list，map，property，必须提供set方法
+都能注入：set，list，map，property，必须提供set方法。
 ```java
 public class CollectionInjecti {
 
