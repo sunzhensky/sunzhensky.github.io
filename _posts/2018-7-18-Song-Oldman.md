@@ -12,6 +12,8 @@ category: blog
 下面一一写写这些词牌，也想想过去的事儿。不少都忘了吧。
 
 小时候的那段时光不能算作十分快乐。不过，我身上的诸多东西却是那时形成的，或者说开了个头吧。宋词，便是我这一生的一个音调，今日情由偶奏起，且回眸。
+1(P4),Largest palindrome product
+-
 ```
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 
