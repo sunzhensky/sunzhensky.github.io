@@ -1,85 +1,144 @@
-﻿---
+---
 layout: post
 title: spring知识点汇合
-description: 好歌献给您，愿您留心底。
+description: 一些收集的。
 category: blog
 ---
 
-近天，日子愉悦，几无大事。
-
-偶听邓丽君《淡淡幽情》一唱片，翻至目录，见数词牌，心情顿开，想起少时翻诵宋词的日子，与大小事情。只觉得自己确实是大了，变了。
-
-下面一一写写这些词牌，也想想过去的事儿。不少都忘了吧。
-
-小时候的那段时光不能算作十分快乐。不过，我身上的诸多东西却是那时形成的，或者说开了个头吧。宋词，便是我这一生的一个音调，今日情由偶奏起，且回眸。
-
-1(P4),Largest palindrome product
+1.定义
 -
-```
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+缺点：我们自己创建bean(不使用spring)：耦合性大，项目不好维护，测试成本高
 
-Find the largest palindrome made from the product of two 3-digit numbers.
-```
-这个题目思路很简单，考虑到求最大结果，所以从999×999开始递减就可以，我的想法是利用整除与取余将结果的前三项（倒置）与后三项比较，然后就可以得出结果。但是比较麻烦，最后采取的方法是直接将这个数整个翻转，然后对比原数，用一个双重循环找出最大值就可以了。使用C语言，下面给出代码：
-```c
-#include <stdio.h>
+控制反转IoC：
+控制反转。IoC不是技术，而是一种设计思想。我的理解是应用本身不负责对象的创建和维护，对象和依赖对象创建完全交给Spring的容器去管理和维
+护，这样控制权就由应用程序转移到了外部容器，控制权的转移即控制反转。
 
-int is_palindrome( int number ){
-        int res = 0;
-        int n = number;
-        if ( n < 0 ){
-            return 0;
-        }
-        do{
-            res = res * 10 + n % 10;
-            n = n / 10;
-        } while ( n );
+面向切面AOP：
+面向切面编程。AOP是对面向对象编程（oop）的补充，面向对象编程将程序分解成各个层次的对象，面向切面编程将程序运行过程分解成各个切面。AOP从程序运行角度考虑程序的结构，提取业务处理过程的切面，oop是静态的抽象，aop是动态的抽象，是对应用执行过程中的步骤进行抽象，，从而获得步骤之间的逻辑划分。
+   AOP的具体思想是：定义一个切面，在切面的纵向定义处理方法，处理完成之后，回到横向业务流
+AOP就是面向切面编程，AOP是OOP的延续，什么时候回用到呢，就是当你想对原有的逻辑进行一些处理，而又不想影响原有的逻辑，面向切面就弥补了面向对象的不足，使用代理对原有的逻辑进行一些事务处理啊，异常处理啊，等等……
+这样做的好处就是把本身不属于业务逻辑这块代码拿到外面去，使不相干的逻辑和业务逻辑彻底分离，spring中就采用了这样的方式，我们进行事务处理的时候，在xml中配置一下就好了，当然内部是用动态代理的方式实现的，这只是我的理解！
 
-        if ( res == number ){
-            return 1;
-        }
-        return 0;
-}
 
-int solution(){
-    int x, y, v, largest_number;
-    largest_number=0;
+2.Bean的创建方式
+-
+1.使用构造器创建（工作中最常用的方式）
+使用构造器方式创建bean，要求bean必须要有默认的构造器
 
-    for(x = 999; x > 100; x--){
-        for(y = 999; y > 100; y--){
-            v = x * y;
-            if(v > largest_number && is_palindrome(v) == 1){
-                largest_number = v;
-            }
-        }
-    }
-    return largest_number;
-}
-
-int main(){
-    return solution();
-}
-```
+配置:
 ```java
+<bean id="user" class="com.sz.spring.model.User"></bean>
+```
+
+2.静态工厂方式创建
+提供静态工厂
+
+配置:
+```java
+<!--
+     id:唯一标识
+     class:静态工厂的类
+     factory-method:静态工厂的方法
+-->
+<bean id="user" class="com.sz.spring.factory.FactoryBean"  factory-method="createUser"></bean>
+```
+
+3.实例工厂方式创建
+实例工厂
+
+配置:
+```java
+<!--通过spring来定义实例工厂  -->
+<bean id="factoryBean" class="com.sz.spring.factory.FactoryBean1"></bean>
+
+<!--指定要创建的bean
+    factory-bean:指定实例化工厂类
+    factory-method:工厂的创建bean的方法  
+-->
+<bean id="user" factory-bean="factoryBean" factory-method="createUser"></bean>
+```
+
+
+3.延迟加载
+-
+所有bean默认情况下，非延迟加载的，是spring的容器创建的时候就把bean给创建出来了，我们getBean的时候直接从容器中去拿这个Bean就可以了。
+是否延迟加载由lazy_init来控制，默认是false，如果变成true就在getBean的时候去创建bean。
+
+
+4.bean的作用域
+-
+默认情况下，bean都是单例的，是容器初始化的时候被创建的，就这么一份。
+Scope：singleton单例,prototype多例,默认使用singleton
+如果是singleton我们可以设置非延迟加载(容器初始化创建bean)和延迟加载(getBean的时候才创建)方式创建bean
+如果是prototype我们没得选择只能是延迟加载方式创建)
+
+
+5.bean的生命周期
+-
+通过两个方法来验证
+init方法和destroy方法
+init是bean被创建的时候被调用，主要做一些准备工作
+destroy是bean被销毁的时候被调用，做清理工作
+Bean的生命周期和容器一致，容器被创建bean就被创建，容器销毁bean就被销毁。
+```java
+public void init() {
+	System.out.println("我出来了");
+}
+
+public void destroy() {
+	System.out.println("20年后又是一个好汉");
+}
+<!--
+     init-method:bean被创建时调用
+     destroy-method:bean被销毁时调用
+-->
+<bean id="user" class="com.sz.spring.model.User" init-method="init" destroy-method="destroy"></bean>
+```
+
+
+6.依赖注入
+-
+1.常量注入
+```java
+<!--
+     bean的常量注入
+-->
 <bean id="user" class="com.sz.spring.model.User">
- 		<!--  
- 			index:构造方法的参数的索引顺序
- 			type:构造方法的参数的类型(不是必须的)
- 			value:值
- 		-->
- 		<!-- <constructor-arg index="0" type="java.lang.Integer" value="2"/>
-		<constructor-arg index="1" type="java.lang.String" value="sunzhen"/>
-		<constructor-arg index="2" type="java.lang.String" value="666"/> -->
-		<constructor-arg index="0" value="2"/>
-		<constructor-arg index="1" value="sunzhen"/>
-		<constructor-arg index="2" value="666"/>		 	
+	<!--  
+	     property:class里面的属性
+	     name:属性名
+	-->
+	<property name="userId" value="1"></property>
+	<property name="username" value="sunzhen"></property>
+	<property name="password" value="123"></property>
+</bean>	
+```
+
+2.构造器注入
+构造器注入常量:
+```java
+<!-- 构造器方式注入 -->
+<bean id="user" class="com.sz.spring.model.User">
+	<!--  
+	     index:构造方法的参数的索引顺序
+	     type:构造方法的参数的类型(不是必须的)
+	     value:值
+	-->
+	<!-- <constructor-arg index="0" type="java.lang.Integer" value="2"/>
+	<constructor-arg index="1" type="java.lang.String" value="sunzhen"/>
+	<constructor-arg index="2" type="java.lang.String" value="666"/> -->
+	<constructor-arg index="0" value="2"/>
+	<constructor-arg index="1" value="sunzhen"/>
+	<constructor-arg index="2" value="666"/>		 	
 </bean>
 ```
 
+构造器注入bean:
+第一步：给当前的bean（Service实现类）提供要注入的bean有参数的构造器，切记不要忘了把默认构造器显示的提供出来
 ```java
 public class UserServiceImpl implements UserService {
 
-private UserDao userdao;
+	private UserDao userdao;
 
 	public UserServiceImpl() {
 
@@ -91,111 +150,248 @@ private UserDao userdao;
 	}
 
 	@Override
-public void save() {
+	public void save() {
 
-userdao.save();
+		userdao.save();
+	}
+
+}
+```
+第二步：做配置
+```java
+<!--  
+      定义UserDao的bean
+ -->
+<bean id="userDao" class="com.sz.spring.dao.impl.UserDaoImpl"></bean>
+<!-- 定义UserService的bean -->
+<bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl">
+	<!-- 通过构造器的方式指定注入的bean 
+	     type:指定UserDao接口,不要指定实现类
+	     ref:要注入的bean
+	-->
+	<constructor-arg index="0" type="com.sz.spring.dao.UserDao" ref="userDao"/>
+</bean>
 ```
 
+3.外部bean注入(90%使用)
+第一步：创建UserService，中有一个UserDao的属性。必须提供set方法
+```java
+public class UserServiceImpl implements UserService {
 
-相见欢
---
-无言独上西楼，月如钩。寂寞梧桐深院锁清秋。
+	private UserDao userdao;
 
-剪不断，理还乱，是离愁。别是一番滋味在心头。
+	/*外部bean的方式注入，必须提供要注入的bean的set方法 */
+	public void setUserdao(UserDao userdao) {
+		this.userdao = userdao;
+	}
 
-宋三百，那书翻开先是近十首后主词；这首于其中，而初识于其他书籍，犹记应是一晚。
+	@Override
+	public void save() {
 
-水调歌头
---
-转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？
+		userdao.save();
+	}
 
-人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟 。
+}
+```
+第二步：配置
+```java
+<!--  
+     定义UserDao的bean
+ -->
+ <bean id="userDao" class="com.sz.spring.dao.impl.UserDaoImpl"></bean> 	
+<!-- 定义Service的bean -->
+<bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl">
+	<!-- 通过属性方式注入
+	     name:bean的属性名
+	     ref:要注入的bean	
+	 -->
+	<property name="userdao" ref="userDao"></property>
+</bean>
+```
 
-这首词是东坡的大名作了，人生分合，难过最是死别，生离倒还有回旋的余地，而前者却消失了团圆的疑虑。话少说些吧，多了伤心。
+4.内部bean注入
+第一步：创建UserService，中有一个UserDao的属性。必须提供set方法
+```java
+public class UserServiceImpl implements UserService {
 
-虞美人
---
+	private UserDao userdao;
 
-春花秋月何时了，往事知多少。小楼昨夜又东风，故国不堪回首月明中。
+	/*外部bean的方式注入，必须提供要注入的bean的set方法 */
+	public void setUserdao(UserDao userdao) {
+		this.userdao = userdao;
+	}
 
-雕栏玉砌应犹在，只是朱颜改。问君能有几多愁，恰似一江春水向东流。
+	@Override
+	public void save() {
 
-这个一江春水的知名度，大概与唐太白的疑是银河相仿了；后主的绝命词。后主的词真实漂亮，无缝天衣，应了那句文章本天成。
+		userdao.save();
+	}
 
-苏幕遮
---
-碧云天，黄叶地，秋色连波，波上寒烟翠。山映斜阳天接水，芳草无情，更在斜阳外。
+}
+```
+第二步：配置
+UserDaoImpl它定义在UserService的内部，不能被其他bean注入，比较少用
+```java
+<bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl">
+ 	<property name="userdao">
+ 		<bean class="com.sz.spring.dao.impl.UserDaoImpl"></bean>
+ 	</property>
+ </bean>
+```
 
-黯乡魂，追旅思，夜夜除非，好梦留人睡。明月楼高休独倚，酒入愁肠，化作相思泪。
+5.集合注入
+都能注入：set，list，map，property，必须提供set方法
+```java
+public class CollectionInjecti {
 
-好词，有王维的诗画之感，但更多一分沧桑。
+	private Set<String> set;
 
-桃园忆故人
---
+	private List<String> list;
 
-玉楼深锁薄情种，清夜悠悠谁共？羞见枕衾鸳凤，闷则和衣拥。
+	private Map<String, String> map;
 
-无端画角严城动，惊破一番新梦。窗外月华霜重，听彻《梅花弄》。
+	private Properties prop;
 
-古时情种听《梅花三弄》，今日相思人闻《清夜悠悠》。
+	public Properties getProp() {
+		return prop;
+	}
 
-鹧鸪天
---
-玉惨花愁出凤城，莲花楼下柳青青。尊前一唱阳关后，别个人人第五程。
+	public void setProp(Properties prop) {
+		this.prop = prop;
+	}
 
-寻好梦，梦难成。况谁知我此时情。枕前泪共帘前雨，隔个窗儿滴到明。
+	public Map<String, String> getMap() {
+		return map;
+	}
 
-枕前泪共帘前雨，动了真情。与爱人分手，心如刀割。
+	public void setMap(Map<String, String> map) {
+		this.map = map;
+	}
 
-乌夜啼
---
-林花谢了春红，太匆匆，无奈朝来寒雨晚来风。
+	public List<String> getList() {
+		return list;
+	}
 
-胭脂泪，留人醉，几时重，自是人生长恨水长东。
+	public void setList(List<String> list) {
+		this.list = list;
+	}
 
-我读的宋三百一书的第一首词；人生长恨，使得真情可贵。
+	public Set<String> getSet() {
+		return set;
+	}
 
-玉楼春
---
-别后不知君远近。触目凄凉多少闷。渐行渐远渐无书，水阔鱼沉何处问。
+	public void setSet(Set<String> set) {
+		this.set = set;
+	}
 
-夜深风竹敲秋韵。万叶千声皆是恨。故欹单枕梦中寻，梦又不成灯又烬。
+}
+```
+配置：
+```java
+<bean id="ci" class="com.sz.spring.model.CollectionInjecti">
+	<property name="set">
+		<set>
+		     <value>football</value>
+		     <value>basketball</value>
+		</set>
+	</property>
+	<property name="list">
+		<list>
+		     <value>male</value>
+		     <value>female</value>
+		</list>
+	</property>
+	<property name="map">
+		<map>
+		     <entry key="key1" value="value1"></entry>
+		     <entry key="key2" value="value2"></entry>
+		</map>
+	</property>
+	<property name="prop">
+		<props>
+		      <prop key="name">孙震</prop>
+		      <prop key="job">学生</prop>
+		</props>
+	</property>
+</bean>
+```
 
-“同学你好”，一段风花雪月，希望可以冰冻三尺哈哈。
+7.注解方式注入
+-
+第一步：引入依赖包
+![王羲之](/images/spring/001.png)
+(/images/spring/001.png)
 
-生查子
---
-去年元夜时，花市灯如昼。月上柳梢头，人约黄昏后。
+第二步：引入约束文件
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd">	
+</beans>
+```
 
-今年元夜时，月与灯依旧。不见去年人，泪湿春衫袖。
+第三步：开启注解的驱动
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+  	
+  	<!-- 开启注解的驱动 -->
+  	<context:annotation-config/>
+  	
+  	<bean id="userDao" class="com.sz.spring.dao.impl.UserDaoImpl"></bean>
+  	<bean id="userService" class="com.sz.spring.service.impl.UserServiceImpl"></bean>
+</beans>
+```
 
-想得而不可得，你奈人生何？
+1.@Resource注解
+①加在属性上
+在bean中定义要注入bean的属性，不需要提供set方法
+```java
+public class UserServiceImpl implements UserService {
 
-雨霖铃
---
-寒蝉凄切，对长亭晚，骤雨初歇。都门帐饮无绪，留恋处，兰舟催发。
+	@Resource
+	private UserDao userdao;
 
-执手相看泪眼，竟无语凝噎。念去去，千里烟波，暮霭沉沉楚天阔。
+	@Override
+	public void save() {
 
-多情自古伤离别，更那堪冷落清秋节！今宵酒醒何处？杨柳岸，晓风残月。
+		userdao.save();
+	}
 
-此去经年，应是良辰好景虚设。便纵有千种风情，更与何人说？
+}
+```
 
-多情自古伤离别，现在交通发达了，希望我不会重蹈此覆辙。
+Spring容器初始化的时候，@Resource注解首先按照@Resource属性的name(默认没有指定name的时候用变量名(userdao))名称匹配跟spring容器中bean的id来匹配，默认不指定@Resource的name时，如果name匹配不上，就按照接口和实现类的关系来匹配，如果存在一个接口有多个实现类的关系的时候，我们必须指定@Resource的name属性来指定到底注入哪一个bean。
 
-丑奴儿
---
-少年不识愁滋味，爱上层楼，爱上层楼，为赋新词强说愁。
 
-而今识得愁滋味，欲说还休，欲说还休，却道天凉好个秋。
+如果指定了name，能找到就注入进来，如果找不到就会报错，不会按照类型进行匹配。
 
-喜欢豪放派的温柔词，与摇滚后的沉吟有异曲同工之好处。不过，现在我倒还算是一少年，哈哈。
 
-卜算子
---
-我住长江头，君住长江尾。 日日思君不见君，共饮长江水。
+@Resource注解并不是spring的注解，而是javax下的。
 
-此水几时休，此恨何时已。只愿君心似我心，定不负相思意。
+②加在set方法上
+在set方法上加@Resource注解
+默认不指定@Resource的name的时候，bean的id和如果下图左边的三个框内的任意一个名称能匹配上就能注入。如果三个名字都匹配不上就都会按照接口和实现类的关系来匹配，如果遇到两个实现类就会报错，这时要求@Resource的name。
 
-终了一句，愿天下有情人，终成眷属。
+
+如果一旦指定了@Resource的name，如果name匹配不上就直接报错，不会再按照类型去匹配。
+
+
+2.@Autowired注解
+①加在属性上
+@Autowired按照接口和实现类的关系来匹配的，如果存在多个接口的实现类的时候，我们必须要指定name来匹配，要结合@Qulifier的注解来指定value和 bean的id匹配来注入。
+
+
+②加在set方法上
 
