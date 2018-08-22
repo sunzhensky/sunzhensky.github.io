@@ -65,3 +65,28 @@ b) 一般函数： 没有限制；
 封装：将数据或函数等集合在一个个的单元中（我们称之为类）。被封装的对象通常被称为抽象数据类型。隐藏对象的属性和实现细节，仅仅对外公开接口，保护代码（数据）安全。<br>
 继承：主要实现重用代码，节省开发时间。<br>
 多态：同一操作作用于不同对象，可以有不同的解释，有不同的执行结果，这就是多态，简单来说就是：父类的引用指向子类对象。<br>
+
+
+6.JAVA中String类与StringBuffer类的区别
+-
+简单地说，就是一个变量和常量的关系。StringBuffer对象的内容可以修改；而String对象一旦产生后就不可以被修改，重新赋值其实是两个对象。<br>
+例子：
+```java
+public class str{
+  public static void main(String[] args){
+      String str1="加特效！";
+      String str2="Duang~~";
+      System.out.println(str1+" "+str2);
+    }
+  }
+ 
+public class str{
+  public static void main(String[] args){
+    //构建一个缓冲字符串的对象sb
+    StringBuffer sb=new StringBuffer("加特效！");
+    //通过append方法，在这个对象后面添加一个新字符串
+    sb.append(" Duang~~");
+    System.out.println(sb);
+  }
+}
+```
