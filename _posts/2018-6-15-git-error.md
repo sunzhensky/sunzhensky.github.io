@@ -69,3 +69,6 @@ To git@github.com:hahaha/ftpmanage.git
 Branch master set up to track remote branch master from origin.
 ```
 大功告成!!!
+
+
+抄自：https://www.cnblogs.com/jeremylee/p/5715289.html
