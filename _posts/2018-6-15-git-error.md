@@ -4,8 +4,6 @@ title: error: src refspec master does not match any. 错误处理办法
 description: git管理工具
 category: blog
 ---
-
-
 本地仓库使用如下命令初始化：
 ```git
 $ git init
