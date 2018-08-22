@@ -1,16 +1,11 @@
 ---
 layout: post
-title: 招聘题
-description: 一些常考的面试题，持续更新。
-category: blog
----
-
----
-layout: post
-title: error: src refspec master does not match any. 错误处理办法
+title: error:src refspec master does not match any.错误处理办法
 description: git管理工具
 category: blog
 ---
+
+
 本地仓库使用如下命令初始化：
 ```git
 $ git init
