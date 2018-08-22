@@ -12,7 +12,8 @@ $ git init
 ```
 之后使用如下命令添加远程库：
 ```git
-$ git remote add origin git@github.com:hahah/ftpmanage.git
+$ git remote add origin git@github.com:××/**.git
+(××代表GitHub账户名，**代表仓库地址；比如git remote add origin git@github.com:sunzhensky/sunzhensky.github.io.git)
 ```
 然后使用
 ```git
