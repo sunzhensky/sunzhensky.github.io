@@ -13,9 +13,9 @@ category: blog
 -
 <br>
 1.下载 Bootstrap，将压缩包中的文件夹放入WebContent目录下<br>
-2.搭建 Bootstrap 的基本的模板<br>
+2.搭建 Bootstrap 的基本的模板
 ![001](/images/bootstrap/001.png)
-3.导入依赖JQuery插件的jar包<br>
+3.导入依赖JQuery插件的jar包
 ![002](/images/bootstrap/002.png)
 <br>
 <br>
