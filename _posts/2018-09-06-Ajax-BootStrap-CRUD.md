@@ -9,7 +9,8 @@ category: blog
 ![004](/images/bootstrap/004.png)
 <br>
 <br>
-一、环境搭建：
+
+一、环境搭建
 -
 <br>
 1.下载 Bootstrap，将压缩包中的文件夹放入WebContent目录下<br>
@@ -20,7 +21,7 @@ category: blog
 <br>
 <br>
 
-二、目录结构如下：
+二、目录结构
 -
 <br>
 ![003](/images/bootstrap/003.png)
