@@ -5,7 +5,12 @@ description: 刚刚接触bootstrap前端框架做的一个demo
 category: blog
 ---
 
+效果图：<br>
+![004](/images/bootstrap/004.png)
+<br>
+<br>
 一、环境配置：<br>
+-
 1.下载 Bootstrap，将压缩包中的文件夹放入WebContent目录下<br>
 2.搭建 Bootstrap 的基本的模板<br>
 ![001](/images/bootstrap/001.png)
@@ -16,12 +21,14 @@ category: blog
 <br>
 
 二、目录结构如下： <br>
+-
 ![003](/images/bootstrap/003.png)
 <br>
 <br>
 <br>
 
 三、具体代码<br>
+-
 table.jsp
 ```java
 <%@ page language="java" contentType="text/html; charset=UTF-8"
