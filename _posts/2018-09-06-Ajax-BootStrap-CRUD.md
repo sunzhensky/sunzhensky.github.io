@@ -13,10 +13,12 @@ category: blog
 一、环境搭建
 -
 <br>
-1.下载 Bootstrap，将压缩包中的文件夹放入WebContent目录下<br>
-2.搭建 Bootstrap 的基本的模板
+1.下载 Bootstrap，将压缩包中的文件夹(css,fonts,js)放入WebContent目录下<br>
+2.将jquery库放入js文件夹下
+![005](/images/bootstrap/005.png)
+3.搭建 Bootstrap 的基本的模板
 ![001](/images/bootstrap/001.png)
-3.导入依赖JQuery插件的jar包
+4.导入Jackson(将普通数据与json数据互转)的jar包
 ![002](/images/bootstrap/002.png)
 <br>
 <br>
