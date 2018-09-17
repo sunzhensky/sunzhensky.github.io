@@ -5,7 +5,7 @@ description: 将上篇文章中的bootstrap demo更改为基于struts2和SpringM
 category: blog
 ---
 
-将上篇文章中的demo改为基于Struts2和SpringMVC框架的项目，具体改动不大，这里我就粗略讲解一下。
+将上篇文章中的demo改为基于Struts2和SpringMVC框架的项目，具体改动不大，这里我就粗略讲解一下。[上篇文章地址](http://www.sunzhensky.top/Ajax-BootStrap-CRUD)
 
 Struts2:
 -
@@ -121,7 +121,7 @@ function update(id){
 	<!-- Spring MVC不处理静态资源 -->
 	<mvc:default-servlet-handler/>
 ```
-4..将UserServlet.java相关步骤放入com.qst.controller.UserController类中相应的方法中。这里要注意将json字符串转换为json对象时，要导入gson.jar包
+4..将UserServlet.java相关步骤放入com.qst.controller.UserController类中相应的方法中。这里要注意将json字符串转换为json对象时，要导入gson.jar包<br>
 UserController.java:
 ```java
 package com.qst.controller;
@@ -155,9 +155,9 @@ public class UserController{
 		
 		JsonParser jp = new JsonParser();
 		//将json字符串转化成json对象
-    JsonObject jo = jp.parse(idi).getAsJsonObject();
-    //获取idi对应的值(获取list下标)
-    int i = Integer.parseInt(jo.get("idi").getAsString());	
+    		JsonObject jo = jp.parse(idi).getAsJsonObject();
+    		//获取idi对应的值(获取list下标)
+    		int i = Integer.parseInt(jo.get("idi").getAsString());	
 		list.remove(i);
 		return list;
 	}
