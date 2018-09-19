@@ -112,7 +112,31 @@ function update(id){
 	});
 }
 ```
-3.在springmvc-config.xml中进行相关配置：
+3.struts.xml（struts2与json数据交互需要导入 struts2-json-plugin jar包）
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.ui.theme" value="simple" />  
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="helloworld" extends="struts-default,json-default" namespace="/">
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<action name="UserAction_*" class="com.qst.action.UserAction" method="{1}"> 
+			<result type="json"> 
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+ 				<param name="root">list</param> 
+ 			</result>
+			
+		</action>
+	</package>
+</struts>
+```
+4.在springmvc-config.xml中进行相关配置：
 ```java
 	<!-- 自动扫描包，实现支持注解的IOC -->
 	<context:component-scan base-package="com.qst.controller"/>
