@@ -152,28 +152,23 @@ function getid(id) {
 </head>
 <body onload="load()">
 <div class="container">
-'
 	<div class="row">
 		<div class="col-lg-8" class="visible-desktop" >
 			<p>
 
 			</p>		
-						<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" id="add" onclick="return getid(this.id)" >
-						  添加
-						</button>							
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						  <div class="modal-dialog" role="document">
-						    <div class="modal-content">  
-						        
-						        <b>
-						        
-						        </b>
-						      
-						    </div>
-						  </div>
-						</div>				
-			
-
+			<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" id="add" onclick="return getid(this.id)" >
+			  添加
+			</button>							
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">  		        
+			        <b>
+			        
+			        </b>			      
+			    </div>
+			  </div>
+			</div>							
 		</div>
 	</div>
 </div>
