@@ -478,7 +478,7 @@ soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwi
 ```
 
 2.部署当前web应用<br>
-启动tomcat，部署当前web应用，地址栏输入：
+启动tomcat，部署当前web应用，地址栏输入：<br>
 ```
 http://localhost:8080/OnlinePreview/documentUpload.jsp
 ```
