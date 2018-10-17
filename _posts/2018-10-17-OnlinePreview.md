@@ -467,3 +467,18 @@ public class DocConverter {
 	}
 }
 ```
+<br>
+
+四、部署发布
+-
+1.开启OpenOffice服务<br>
+openoffice安装目录OpenOffice 4\program下打开dos窗口，输入以下代码来启动服务：<br>
+```
+soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard
+```
+
+2.部署当前web应用<br>
+启动tomcat，部署当前web应用，地址栏输入：
+```
+http://localhost:8080/OnlinePreview/documentUpload.jsp
+```
