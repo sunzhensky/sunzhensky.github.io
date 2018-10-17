@@ -107,6 +107,7 @@ public class FaceAPITest {
 
 6.测试结果
 -
-如果成功返回如下值：
+如果成功返回如下值，并且人脸库中添加了刚才注册的用户：
 ![004](/images/baidu-FaceAPI/004.png)
+![005](/images/baidu-FaceAPI/005.png)
 如果失败，则根据返回的error_code的值，对比官方给出的错误码代表的含义进行调试。（官方错误码地址：http://ai.baidu.com/docs#/Face-ErrorCode-V3/top）
