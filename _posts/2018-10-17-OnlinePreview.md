@@ -9,7 +9,7 @@ category: blog
 -
 1.通过第三方工具openoffice,将word、excel、ppt、txt等文件转换为pdf文件<br>
 2.通过swfTools将pdf文件转换成swf格式的文件<br>
-3.通过FlexPaper文档组件在页面上进行展示<br>
+3.通过FlexPaper文档组件在页面上进行展示
 <br>
 
 二、安装包下载
@@ -23,7 +23,7 @@ category: blog
 
 三、开发过程
 -
-1.新建项目
+1.新建项目<br>
 将flexpaper文件中的js文件夹(包含了flexpaper_flash_debug.js，flexpaper_flash.js,jquery.js,这三个js文件主要是预览swf文件的插件)拷贝至网站根目录;将FlexPaperViewer.swf拷贝至网站根目录下(该文件主要是用在网页中播放swf文件的播放器)。<br>
 目录结构如下图：<br>
 ![001](/images/OnlinePreview/001.png)
