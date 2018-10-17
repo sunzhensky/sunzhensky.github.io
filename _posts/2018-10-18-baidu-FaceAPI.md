@@ -47,7 +47,7 @@ https://console.bce.baidu.com/ai/?_=1528192333418&fromai=1#/ai/face/overview/ind
 
 5.开始测试
 -
-以人脸注册为例子：（接口文档说明地址：http://ai.baidu.com/docs#/Face-Java-SDK/top）
+以人脸注册为例子：（接口文档说明地址：http://ai.baidu.com/docs#/Face-Java-SDK/d126963d）
 ```java
 public class FaceAPITest {
 		
