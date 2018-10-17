@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 百度人脸识别技术
-description: 
+description: 简单的调用接口的例子
 category: blog
 ---
 
@@ -108,5 +108,5 @@ public class FaceAPITest {
 6.测试结果
 -
 如果成功返回如下值：
-![003](/images/baidu-FaceAPI/004.png)
+![004](/images/baidu-FaceAPI/004.png)
 如果失败，则根据返回的error_code的值，对比官方给出的错误码代表的含义进行调试。（官方错误码地址：http://ai.baidu.com/docs#/Face-ErrorCode-V3/top）
