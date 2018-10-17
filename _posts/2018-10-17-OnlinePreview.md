@@ -19,4 +19,4 @@ category: blog
 2.SWFTools是一组用来处理Flash的swf文件的工具包,我们使用它将pdf文件转成swf文件<br>
 3.FlexPaper是一个开源轻量级的在浏览器上显示各种文档的组件<br>
 4.JODConverter一个Java的OpenDocument 文件转换器，在此我们只用到它的jar包<br>
-[下载地址](https://pan.baidu.com/s/1YDeOgOMU-V0ayyIWUSYJqg_blank)（提取码：9kfk）
+[下载地址](https://pan.baidu.com/s/1YDeOgOMU-V0ayyIWUSYJqg?_blank)（提取码：9kfk）
