@@ -92,15 +92,15 @@ public class FaceAPITest {
     /**
      * BASE64加密
      */
-	public static String getBase64(File file) throws Exception{
-		Base64 b64 = new Base64();
-		FileInputStream fis = new FileInputStream(file);
-		byte[] buffer = new byte[(int)file.length()];
-		fis.read(buffer);
-		fis.close();
-			
-		return b64.encodeToString(buffer);
-	}
+     public static String getBase64(File file) throws Exception{
+     	Base64 b64 = new Base64();
+	FileInputStream fis = new FileInputStream(file);
+	byte[] buffer = new byte[(int)file.length()];
+	fis.read(buffer);
+	fis.close();
+				
+	return b64.encodeToString(buffer);
+     }
 	
 }
 ```
